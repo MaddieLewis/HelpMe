@@ -14,9 +14,10 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
+    @task.user = current_user
 
     if @task.save
-      redirect_to task_path(@task) notice: 'Task was successfully created.'
+      redirect_to task_path(@task), notice: 'Task was successfully created.'
     else
       render :new
     end
@@ -27,7 +28,7 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to @task, notice: 'Task was successfully updated.'
+      redirect_to task_path(@task), notice: 'Task was successfully updated.'
     else
       render :new
   end
@@ -43,9 +44,8 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
 
-  #to complete when creating form
-  # def task_params
-  #   params.require(:task).permit(:title, :description, :start_date, :end_date, :start_time, :end_time, :category)
-  # end
+  def task_params
+    params.require(:task).permit(:title, :description, :start_date, :end_date, :start_time, :end_time, :category)
+  end
 
 end
