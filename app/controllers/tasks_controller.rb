@@ -31,6 +31,7 @@ class TasksController < ApplicationController
       redirect_to task_path(@task), notice: 'Task was successfully updated.'
     else
       render :new
+    end
   end
 
   def destroy
