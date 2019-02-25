@@ -19,6 +19,7 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.user = current_user
+    @booking.task = params[:task_id]
     if @booking.save
       redirect_to booking_path(@booking)
     else
