@@ -8,7 +8,8 @@ class TasksController < ApplicationController
   end
 
   def show
-    authorize @task
+    @user = @task.user
+    @booking = Booking.new
   end
 
   def new
