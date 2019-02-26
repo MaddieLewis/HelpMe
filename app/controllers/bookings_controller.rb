@@ -27,17 +27,17 @@ class BookingsController < ApplicationController
     end
   end
 
-  # # update
-  # def update
-  #   @booking = Booking.find(params[:id])
-  #   if current_user.id == @booking.task.user_id
-  #     @booking.confirmed
-  #   end
-  # end
+  # update
+  def update
+    @booking = Booking.find(params[:id])
+    if current_user.id == @booking.task.user_id
+      @booking.confirmed
+    end
+  end
 
-  # # edit
-  # def edit
-  # end
+  # edit
+  def edit
+  end
 
   # destroy
   def destroy
@@ -48,6 +48,6 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:bookings).permit(:confirmed, :task_id)
+    params.require(:bookings).permit(:status, :task_id)
   end
 end
