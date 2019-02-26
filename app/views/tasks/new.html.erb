@@ -1,9 +1,8 @@
-<%= simple_form_for @task do |f| %>
-<%= f.input :title, label: "Task Title" %>
-<%= f.input :description, label: "Description" %>
-<%= f.input :start_date, label: "Start Date" %>
-<%= f.input :end_date, label: "End Date" %>
-<%= f.input :start_time, label: "Start Time" %>
-<%= f.input :end_time, label: "End Time" %>
-<%= f.input :category, label: "Category" %>
+<h1>New task</h1>
+
+<%= render 'form', task: @task %>
+
+<hr>
+<%= link_to tasks_path do %>
+  <i class="fa fa-history"></i> Back to list
 <% end %>
