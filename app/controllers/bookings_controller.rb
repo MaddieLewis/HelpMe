@@ -19,7 +19,7 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.user = current_user
-    @booking.task = params[:task_id]
+    @booking.task = Task.find(params[:task_id])
     if @booking.save
       redirect_to booking_path(@booking)
     else
@@ -48,6 +48,6 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:bookings).permit(:status, :task_id)
+    params.require(:booking).permit(:status)
   end
 end
