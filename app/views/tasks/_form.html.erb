@@ -1,9 +1,20 @@
 <%= simple_form_for @task do |f| %>
-<%= f.input :title, label: "Task Title" %>
-<%= f.input :description, label: "Description" %>
-<%= f.input :start_date, label: "Start Date" %>
-<%= f.input :end_date, label: "End Date" %>
-<%= f.input :start_time, label: "Start Time" %>
-<%= f.input :end_time, label: "End Time" %>
-<%= f.input :category, label: "Category" %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+
+  <div class="form-inputs">
+    <%= f.input :title, label: "Task Title" %>
+    <%= f.input :description, label: "Description" %>
+    <%= f.input :start_date, label: "Start Date" %>
+    <%= f.input :end_date, label: "End Date" %>
+    <%= f.input :start_time, label: "Start Time" %>
+    <%= f.input :end_time, label: "End Time" %>
+    <%= f.input :category, label: "Category" %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+
 <% end %>
