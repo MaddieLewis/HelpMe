@@ -48,6 +48,6 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:status,:task_id)
+    params.require(:booking).permit(:status)
   end
 end
