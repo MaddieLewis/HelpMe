@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>Bookings</h1>
+  <% @bookings.each do |booking| %>
+  <div class="card">
+    <h2><%= booking.user.first_name %></h2>
+    <p><%= booking.task.description %></p>
+    <p><%= booking.confirmed %></p>
+  </div>
+  <% end %>
+</div>
+
