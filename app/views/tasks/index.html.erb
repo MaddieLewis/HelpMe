@@ -8,10 +8,17 @@
 
 <div class="container">
   <h1>Tasks</h1>
+  <div class="row">
   <% @tasks.each do |task| %>
-  <div class="card">
-    <h2><%= link_to(task.title, task_path(task)) %></h2>
-    <p><%= task.description %></p>
-  </div>
+    <div class="col-xs-12 col-sm-4">
+      <div class="card">
+        <h2><%= link_to(task.title, task_path(task)) %></h2>
+        <p><%= task.description %></p>
+      </div>
+    </div>
   <% end %>
-</div>
+  </div>
+<div class="container">
+
+
+      <!-- insert <div class="card"> -->
