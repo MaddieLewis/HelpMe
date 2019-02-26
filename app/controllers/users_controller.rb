@@ -6,5 +6,7 @@ class UsersController < ApplicationController
   # end
   def show
     @user = User.find(params[:id])
+    # @bookings = @user.bookings
+    # @task_maker = User.find(booking.task.user_id)
   end
 end
