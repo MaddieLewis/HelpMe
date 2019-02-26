@@ -1,8 +1,9 @@
-<div class="banner" style="background-image: url(<%= image_path "woman-girl-rain.jpg"%>);">
+<div class="banner" style="background-image: linear-gradient(105.2deg, #000000 -86.12%, rgba(0, 0, 0, 0) 99.98%), url(<%= image_path "woman-girl-rain.jpg"%>);">
   <div class="banner-content">
-    <h1>Le Wagon Berlin</h1>
-    <p>Learn to code with us in Berlin</p>
-    <a class="btn btn-primary btn-lg">Start now</a>
+    <h1>A Good </h1>
+    <h1>  Deed</h1>
+    <p>Build a strong community, help one another</p>
+    <a class="btn btn-primary btn-lg">This will be a search bar ...</a>
   </div>
 </div>
 
@@ -10,7 +11,7 @@
   <h1>Tasks</h1>
   <% @tasks.each do |task| %>
   <div class="card">
-    <h2><%= task.title %></h2>
+    <h2><%= link_to(task.title, task_path(task)) %></h2>
     <p><%= task.description %></p>
   </div>
   <% end %>
