@@ -9,14 +9,20 @@
           <h1><%= @task.title %></h1>
         </div>
         <div class="task-show-card">
-          <%= @task.description %>
+          <p><strong>Category</strong><br><%= @task.category.capitalize %></p>
+          <p><strong>Description</strong><br><%= @task.description %></p>
+          <p><strong>Timeslot</strong><br><%= @task.start_date.strftime("%d of %B, %Y") %> at <%= @task.start_time.strftime("%I:%M %p") %> and <%= @task.end_date.strftime("%d of %B, %Y") %> at <%= @task.end_time.strftime("%I:%M %p") %></p>
         </div>
         <div class="task-show-card">
-          <h2>About the Poster</h2>
-          <img src=<%= @user.profile_picture %> class="avatar-large">
-          <p>Name: <%= @user.first_name + ' ' + @user.last_name %></p>
-          <p>About them: <%= @user.description %></p>
-          <%= link_to "User Profile", user_path(@user) %>
+              <h2>Who you'll be helping</h2>
+          <div class="d-flex justify-content-start">
+            <img src=<%= @user.profile_picture %> class="avatar-x-large" height="100px">
+            <div class="pl-5">
+              <p>Name: <%= @user.first_name + ' ' + @user.last_name %></p>
+              <p>About them: <%= @user.description %></p>
+              <%= link_to "User Profile", user_path(@user), class: "btn button-blue" %>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -31,7 +37,7 @@
                   </div>
 
                   <div class="form-actions">
-                    <%= f.button :submit, class: "btn btn-dark"%>
+                    <%= f.button :submit, class: "btn button-pink"%>
                   </div>
                 <% end %>
             </div>
