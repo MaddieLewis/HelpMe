@@ -2,7 +2,10 @@
   <div class="banner-content">
     <h1>A Good <br>   Deed</h1>
     <p>Build a strong community, help one another</p>
-    <a class="btn btn-primary btn-lg">This will be a search bar ...</a>
+    <form class="form-inline my-2 my-lg-0" action="/">
+    <input class="form-control mr-sm-2" name="query" type="search" placeholder="How can you help?" aria-label="Search" value="<%= @query %>">
+    <button class="btn button-blue" type="submit">Search</button>
+    </form>
   </div>
 </div>
 
