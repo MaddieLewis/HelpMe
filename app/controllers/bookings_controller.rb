@@ -2,7 +2,7 @@ class BookingsController < ApplicationController
   # index
   def index
     # need to only show pending or confirmed booking belonging to the user that are yet to happen
-    @bookings = policy_scope(Booking)
+    @bookings = Booking.all
   end
 
   # show
