@@ -33,7 +33,8 @@
               <%= simple_form_for [@task, @booking] do |f| %>
 
                   <div class="form-inputs select">
-                    <%= f.input :status %>
+                    <%= f.input :message %>
+                    <%= f.input :time %>
                   </div>
 
                   <div class="form-actions">

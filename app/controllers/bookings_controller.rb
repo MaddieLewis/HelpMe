@@ -21,7 +21,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     @booking.task = Task.find(params[:task_id])
     if @booking.save
-      redirect_to booking_path(@booking)
+      redirect_to task_bookings_path
     else
       render :new
     end
@@ -48,6 +48,6 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:status)
+    params.require(:booking).permit(:message, :time)
   end
 end
