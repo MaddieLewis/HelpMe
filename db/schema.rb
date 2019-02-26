@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_25_170639) do
+ActiveRecord::Schema.define(version: 2019_02_26_140843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2019_02_25_170639) do
   create_table "bookings", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "task_id"
-    t.boolean "confirmed", default: false
+    t.string "status", default: "pending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["task_id"], name: "index_bookings_on_task_id"
