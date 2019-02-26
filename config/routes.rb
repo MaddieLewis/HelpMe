@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'tasks#index'
   resources :tasks do
-    resources :bookings
+    resources :bookings, except: :destroy
   end
 
   resources  :bookings, only: :destroy
