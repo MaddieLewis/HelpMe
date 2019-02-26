@@ -1,11 +1,14 @@
 class TasksController < ApplicationController
   before_action :find_task, only: [:show, :destroy, :edit, :update]
 
+  skip_before_action :authenticate_user!
+
   def index
-    @tasks = Task.all
+    @tasks = policy_scope(Task)
   end
 
   def show
+    authorize @task
   end
 
   def new
@@ -48,5 +51,4 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:title, :description, :start_date, :end_date, :start_time, :end_time, :category)
   end
-
 end
