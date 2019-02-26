@@ -15,7 +15,14 @@
   <% @tasks.each do |task| %>
     <div class="col-xs-12 col-sm-4">
       <div class="card-gd">
-        <h2><%= link_to task.title, task_path(task), class:"task-title" %></h2>
+        <div class="image">
+          <%= image_tag "dog.jpg", class: "img", alt: "dog" %>
+        </div>
+        <div class="d-flex justify-content-between">
+          <p class="date">Date</p>
+          <h2 class="category">category</h2>
+        </div>
+        <h4><%= link_to task.title, task_path(task), class:"task-title" %></h4>
         <p><%= task.description %></p>
       </div>
     </div>
