@@ -5,14 +5,6 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.all
-    # @tasks = Task.where.not(latitude: nil, longitude: nil)
-
-    @markers = @tasks.map do |task|
-      {
-        lng: task.longitude,
-        lat: task.latitude
-      }
-    end
   end
 
   def show
