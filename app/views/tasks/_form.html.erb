@@ -10,7 +10,7 @@
     <%= f.input :end_date, label: "End Date" %>
     <%= f.input :start_time, label: "Start Time" %>
     <%= f.input :end_time, label: "End Time" %>
-    <%= f.input :category, label: "Category" %>
+    <%= f.input :category, collection: ['transport', 'pets', 'shopping', 'DIY'] %>
   </div>
 
   <div class="form-actions">
