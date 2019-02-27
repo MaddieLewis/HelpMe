@@ -20,7 +20,7 @@
             <%= image_tag "dog.jpg", class: "img", alt: "dog" %>
           </div>
           <div class="d-flex justify-content-between">
-            <p class="date"><%= task.start_date %></p>
+            <p class="date"><%= task.start_time.strftime("%dth %B") %></p>
             <h2 class="category"><%= task.category %></h2>
           </div>
           <h4><%= link_to task.title, task_path(task), class:"task-title" %></h4>
