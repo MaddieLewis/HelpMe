@@ -1,41 +1,51 @@
 <div class="container mt-3">
   <% if @user == current_user %>
-    <h3>Hello<%= @user.first_name %>!</h3>
+    <h2>Hello<%= @user.first_name %>!</h2>
   <% else %>
-    <h3>Welcome to my page!</h3>
+    <h2>Welcome to my page!</h2>
   <% end %>
   <div class="card">
     <div class="card-body">
-      <img src="<%= @user.profile_picture %>" alt="" class="avatar-large">
-      <div class="mt-3">
-        <p> <%= @user.first_name %> <%= @user.last_name %> </p>
-        <p>About me: <%= @user.description %></p>
+      <div class="d-flex align-items-center">
+        <img src="<%= @user.profile_picture %>" alt="profile-avatar" class="avatar-large align-self-center">
+        <h3 class="ml-3"> <%= @user.first_name %> <%= @user.last_name %> </h3>
       </div>
+      <div class="mt-3">
+
+        <h5>About me:</h5>
+        <p><%= @user.description %></p>
+      </div>
+      <% if @user == current_user %>
+        <%= link_to "edit profile", edit_user_registration_path, class: "btn button-pink" %>
+      <% end %>
     </div>
   </div>
   <% if @user == current_user %>
 
-    <h5 class="mt-3">Your tasks: </h5>
+    <h3 class="mt-3">Your tasks </h3>
     <% @user.tasks.each do |task| %>
       <div class="card">
         <div class="card-body">
-          <p><%= task.title %></p>
-          <p><%= task.description %></p>
+          <h3><%= task.title %></h3>
+          <p class="mt-3">Description: <%= task.description %></p>
+          <p>Category: <%= task.category %></p>
+          <%= link_to "edit task", edit_task_path(task), class: "btn button-pink" %>
         </div>
       </div>
     <% end %>
 
-      <h5 class="mt-3">You have offered to help!</h5>
+      <h3 class="mt-3">You have offered to help!</h3>
       <% @user.bookings.each do |booking| %>
         <div class="card">
           <div class="card-body">
-            <p><%= User.find(booking.task.user_id).first_name %>'s Task</p>
-            <%= booking.task.description %>
-            <% if booking.status == "pending" %>
-              <%= link_to "confirm", tasks_path %>
-              <% elsif booking.status == "confirmed" %>
-              <%= link_to "confirm", tasks_path %>
-            <% end %>
+            <div class="d-flex align-items-center">
+              <img src="<%= User.find(booking.task.user_id).profile_picture %>" alt="profile-avatar" class="avatar-large align-self-center">
+              <h3 class="ml-3"><%= User.find(booking.task.user_id).first_name %>'s Task</h3>
+            </div>
+            <h5 class="mt-3"><%= booking.task.title %></h5>
+            <p class="mt-3">Description: <%= booking.task.description %></p>
+            <p>Category: <%= booking.task.category %></p>
+            <%= link_to "edit booking", edit_task_booking_path(booking.task), class: "btn button-pink" %>
           </div>
         </div>
       <% end %>

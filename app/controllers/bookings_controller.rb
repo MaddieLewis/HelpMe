@@ -2,7 +2,8 @@ class BookingsController < ApplicationController
   # index
   def index
     # need to only show pending or confirmed booking belonging to the user that are yet to happen
-    @bookings = Booking.all
+    @bookings = Booking.where(user: current_user).order(created_at: :desc)
+
   end
 
   # show
@@ -11,6 +12,7 @@ class BookingsController < ApplicationController
     @task = @booking.task
     @user = @booking.user
     @task_owner = @task.user
+
   end
 
   # new
