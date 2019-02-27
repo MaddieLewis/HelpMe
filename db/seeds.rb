@@ -31,7 +31,5 @@ Task.create!(user_id: 2, title: 'Please help me meet Nick Cage', description: 'I
 Task.create!(user_id: 2, title: 'Drive me home from the hospital', description: '30 min drive to get there', start_time: "#{Time.now}", end_time: "#{Time.now}", category: "pets", address: "69 Drysdale St, London N1 6ND", photo: "https://images.unsplash.com/photo-1503777119540-ce54b422baff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=933&q=80")
 Task.create!(user_id: 4, title: 'Help me cook', description: 'For my usual Sunday roast, I have arthritus so cannot cook like I used to without help', start_time: "#{Time.now}", end_time: "#{Time.now}", category: "transport", address: "178 Junction Rd, London N19 5QQ", photo: "")
 
-image_path
-# <%= image_tag "dog.jpg", class: "img", alt: "dog" %>
 Booking.create!(user_id: 1, task_id: 2, status: "pending")
 Booking.create!(user_id: 2, task_id: 1, status: "confirmed")
