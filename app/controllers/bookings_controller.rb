@@ -12,7 +12,6 @@ class BookingsController < ApplicationController
     @task = @booking.task
     @user = @booking.user
     @task_owner = @task.user
-
   end
 
   # new
