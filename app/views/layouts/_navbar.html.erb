@@ -9,8 +9,8 @@
     </div>
   <% elsif current_user %>
     <div class="navbar-wagon-right hidden-xs hidden-sm">
-      <a href="" class="navbar-wagon-item navbar-wagon-link">Get Help</a>
-      <a href="" class="navbar-wagon-item navbar-wagon-link">Help</a>
+      <%=link_to "Create Task", new_task_path%></li>
+      <%=link_to "My Bookings", task_bookings_path(current_user)%></li>
       <a href="" class="navbar-wagon-item navbar-wagon-link">Messages</a>
 
       <!-- Profile picture with dropdown list -->
