@@ -1,6 +1,6 @@
 <div class="show-page">
 
-  <div class="top-picture" style="background-image: url('https://images.pexels.com/photos/1266005/pexels-photo-1266005.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
+  <div class="top-picture" style="background-image: url(<%= @task.photo %>)"></div>
 
   <div class="container margin-top-negative">
     <div class="row">
@@ -27,6 +27,8 @@
       </div>
 
       <div class="col-4">
+          <% if @user == current_user %>
+          <% else %>
         <div class="task-show-card">
           <h5>Book this Task!</h5>
            <div class="input-group">
@@ -43,6 +45,7 @@
                 <% end %>
             </div>
         </div>
+           <% end %>
         <div class="task-show-card">
           <div class="flex-align">
 
