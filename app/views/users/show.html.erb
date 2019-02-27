@@ -29,6 +29,11 @@
           <h3><%= task.title %></h3>
           <p class="mt-3">Description: <%= task.description %></p>
           <p>Category: <%= task.category %></p>
+          <% if task.booked %>
+            <%= "Status: Complete" %>
+          <% else %>
+            <p>Status: Pending</p>
+          <% end %>
           <%= link_to "edit task", edit_task_path(task), class: "btn button-pink" %>
         </div>
       </div>
@@ -45,7 +50,7 @@
             <h5 class="mt-3"><%= booking.task.title %></h5>
             <p class="mt-3">Description: <%= booking.task.description %></p>
             <p>Category: <%= booking.task.category %></p>
-            <p>Status: <%= booking.status %></p>
+            <p>Status: <%= booking.status.capitalize %></p>
             <%= link_to "edit booking", edit_task_booking_path(booking.task), class: "btn button-pink" %>
           </div>
         </div>

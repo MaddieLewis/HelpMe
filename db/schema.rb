@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_27_110854) do
+ActiveRecord::Schema.define(version: 2019_02_27_140526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,13 +25,6 @@ ActiveRecord::Schema.define(version: 2019_02_27_110854) do
     t.datetime "time"
     t.index ["task_id"], name: "index_bookings_on_task_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
-  end
-
-  create_table "chats", force: :cascade do |t|
-    t.text "message"
-    t.string "username"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "tasks", force: :cascade do |t|
