@@ -1,1 +1,73 @@
-show.html.erb
+<div class="container mt-3">
+  <% if @user = current_user %>
+    <h2>Thank you for wanting to do a good deed!</h2>
+    <% if @booking.status == 'pending' %>
+      <h3>We've sent your request to <%= @task_owner.first_name %>!</h3>
+    <% elsif @booking.status == 'confirmed' %>
+      <h3>Your request to help <%= @task_owner.first_name %> has been confirmed!</h3>
+    <% elsif @booking.status == 'cancelled' %>
+      <h3>You have cancelled your request to help <%= @task_owner.first_name %></h3>
+    <% elsif @booking.status == 'declined' %>
+      <h3><%= @task_owner.first_name %> has declined your request to help</h3>
+    <% end %>
+  <% elsif @task_owner = current_user %>
+  <h2>Someone wants to do a good deed!</h2>
+    <% if @booking.status == 'pending' %>
+      <h3>You have a new booking! <%= @user.first_name %> would like to help, please review their message below and confirm or decline</h3>
+    <% elsif @booking.status == 'confirmed' %>
+      <h3>You have confirmed <%= @user.first_name %> for this good deed!</h3>
+    <% elsif @booking.status == 'cancelled' %>
+      <h3><%= @user.first_name %> has cancelled this good deed</h3>
+    <% elsif @booking.status == 'declined' %>
+      <h3>You have declined <%= @user.first_name %>'s request</h3>
+    <% end %>
+  <% end %>
+
+    <div class="card p-3 my-3">
+      <h3>About this request:</h3>
+      <div class="d-flex justify-content-start">
+        <img src=<%= @task.photo %> class="avatar-x-large" height="100px">
+        <div class="pl-5">
+          <p>Task: <%= @task.title %></0>
+          <p>Date: <%= @booking.time.strftime("%d of %B, %Y") %> </p>
+          <p>Time: <%= @booking.time.strftime("%I:%M %p") %></p>
+          <% if @user == current_user %>
+            <p>You said: "<%= @booking.message %>"</p>
+          <% elsif @task_owner == current_user  %>
+            <p><% @user.first_name %> said: <%= @booking.message %></p>
+          <% end %>
+          <%= link_to "View Task Details", task_path(@task), class: "btn button-pink" %>
+        </div>
+      </div>
+    </div>
+    <div class="card p-3">
+      <h3>Who you'll be helping:</h3>
+      <div class="d-flex justify-content-start">
+        <img src=<%= @task_owner.profile_picture %> class="avatar-x-large" height="100px">
+        <div class="pl-5">
+          <p>Name: <%= @task_owner.first_name + ' ' + @task_owner.last_name %></p>
+          <p>About them: <%= @task_owner.description %></p>
+          <%= link_to "View User Profile", user_path(@task_owner), class: "btn button-blue" %>
+        </div>
+      </div>
+    </div>
+     <div class="card p-3 mt-3">
+          <h5>Change the Status of this booking</h5>
+           <div class="input-group">
+              <%= simple_form_for [@task, @booking] do |f| %>
+
+                  <div class="form-inputs select">
+                    <% if @user = current_user %>
+                      <%= f.input :status, collection: ['pending', 'cancelled']%>
+                    <% elsif @task_owner = current_user %>
+                      <%= f.input :status, collection: ['pending', 'confirmed', 'declined']%>
+                    <% end %>
+                  </div>
+
+                  <div class="form-actions">
+                    <%= f.button :submit, class: "btn button-pink"%>
+                  </div>
+                <% end %>
+            </div>
+        </div>
+</div>

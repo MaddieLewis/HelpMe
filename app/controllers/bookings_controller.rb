@@ -9,7 +9,10 @@ class BookingsController < ApplicationController
   # show
   def show
     @booking = Booking.find(params[:id])
-    raise
+    @task = @booking.task
+    @user = @booking.user
+    @task_owner = @task.user
+
   end
 
   # new
@@ -32,8 +35,10 @@ class BookingsController < ApplicationController
   # update
   def update
     @booking = Booking.find(params[:id])
-    if current_user.id == @booking.task.user_id
-      @booking.confirmed
+    if @booking.update(booking_params)
+      redirect_to task_booking_path(@booking), notice: 'Booking was successfully updated.'
+    else
+      render :new
     end
   end
 
@@ -50,6 +55,6 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:message, :time)
+    params.require(:booking).permit(:message, :time, :status)
   end
 end
