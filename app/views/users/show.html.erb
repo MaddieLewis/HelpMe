@@ -34,7 +34,7 @@
           <% else %>
             <p>Status: Pending</p>
           <% end %>
-          <%= link_to "edit task", edit_task_path(task), class: "btn button-pink" %>
+          <%= link_to "edit task", task_path(task), class: "btn button-pink" %>
         </div>
       </div>
     <% end %>
@@ -51,7 +51,7 @@
             <p class="mt-3">Description: <%= booking.task.description %></p>
             <p>Category: <%= booking.task.category %></p>
             <p>Status: <%= booking.status.capitalize %></p>
-            <%= link_to "edit booking", edit_task_booking_path(booking.task), class: "btn button-pink" %>
+            <%= link_to "edit booking", task_booking_path(booking.task), class: "btn button-pink" %>
           </div>
         </div>
       <% end %>

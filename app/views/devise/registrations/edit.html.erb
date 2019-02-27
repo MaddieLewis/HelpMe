@@ -22,10 +22,10 @@
                   hint: "we need your current password to confirm your changes",
                   required: true,
                   input_html: { autocomplete: "current-password" } %>
-      <%= f.input :first_name %>
-      <%= f.input :last_name %>
-      <%= f.input :profile_picture %>
-      <%= f.input :description %>
+      <%= f.input :first_name, required: false %>
+      <%= f.input :last_name, required: false %>
+      <%= f.input :profile_picture, required: false %>
+      <%= f.input :description, required:false %>
     </div>
 
     <div class="form-actions my-3">
