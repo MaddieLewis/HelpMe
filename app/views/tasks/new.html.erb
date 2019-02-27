@@ -1,8 +1,10 @@
-<h1>New task</h1>
+<div class="container pt-3">
+  <h2>New task</h2>
 
-<%= render 'form', task: @task %>
+  <%= render 'form', task: @task %>
 
-<hr>
-<%= link_to tasks_path do %>
-  <i class="fa fa-history"></i> Back to list
-<% end %>
+  <hr>
+  <%= link_to tasks_path do %>
+    <i class="fa fa-history"></i> Back to list
+  <% end %>
+</div>

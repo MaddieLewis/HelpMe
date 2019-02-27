@@ -31,8 +31,6 @@ ActiveRecord::Schema.define(version: 2019_02_27_140526) do
     t.bigint "user_id"
     t.string "title"
     t.text "description"
-    t.date "start_date"
-    t.date "end_date"
     t.datetime "start_time"
     t.datetime "end_time"
     t.string "category"
