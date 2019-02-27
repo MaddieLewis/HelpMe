@@ -25,7 +25,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     @booking.task = Task.find(params[:task_id])
     if @booking.save
-      redirect_to task_bookings_path
+      redirect_to user_path(@booking.user)
     else
       render :new
     end
@@ -43,6 +43,7 @@ class BookingsController < ApplicationController
 
   # edit
   def edit
+    @booking = Booking.find(params[:id])
   end
 
   # destroy
