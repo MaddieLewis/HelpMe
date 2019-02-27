@@ -8,17 +8,17 @@
     </form>
   </div>
 </div>
+<div class="container">
 <h1>Explore our needers tasks ...</h1>
 <div class="map_and_tasks d-flex">
 
   <div class="container">
     <div class="row">
     <% @tasks.each do |task| %>
-      <div class="col-sm-6">
-        <div class="card-gd col-md-auto">
-          <div class="image">
-            <%= image_tag "dog.jpg", class: "img", alt: "dog" %>
-          </div>
+      <div class="col-sm-12 col-md-12 col-lg-6">
+        <div class="card-gd ">
+          <div style="background-image: url('#{task.photo}') height: 100px"></div>
+          <img src="<%= task.photo %>" class="card-img-top" alt="">
           <div class="d-flex justify-content-between">
             <p class="date"><%= task.start_time.strftime("%dth %B") %></p>
             <h2 class="category"><%= task.category %></h2>
@@ -32,10 +32,11 @@
 
   <div
   id="map"
-  style="margin: 0 16px; width: 100%;
-  height: 100vh; position: sticky; top: calc(100vw);"
+  style="margin: 0 16px; width: 60%;
+  height: 80vh; position: sticky; "
   data-markers="<%= @markers.to_json %>"
   data-mapbox-api-key="<%= ENV['MAP_BOX_API'] %>"
   ></div>
 
+</div>
 </div>
