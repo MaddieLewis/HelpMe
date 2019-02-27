@@ -2,12 +2,17 @@ class BookingsController < ApplicationController
   # index
   def index
     # need to only show pending or confirmed booking belonging to the user that are yet to happen
-    @bookings = Booking.all
+    @bookings = Booking.where(user: current_user).order(created_at: :desc)
+
   end
 
   # show
   def show
     @booking = Booking.find(params[:id])
+    @task = @booking.task
+    @user = @booking.user
+    @task_owner = @task.user
+
   end
 
   # new
@@ -30,8 +35,10 @@ class BookingsController < ApplicationController
   # update
   def update
     @booking = Booking.find(params[:id])
-    if current_user.id == @booking.task.user_id
-      @booking.confirmed
+    if @booking.update(booking_params)
+      redirect_to task_booking_path(@booking), notice: 'Booking was successfully updated.'
+    else
+      render :new
     end
   end
 
@@ -48,6 +55,6 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:message, :time)
+    params.require(:booking).permit(:message, :time, :status)
   end
 end
