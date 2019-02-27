@@ -18,7 +18,11 @@
     <% @tasks.each do |task| %>
       <div class="col-sm-12 col-md-12 col-lg-6">
         <div class="card-gd ">
-          <img src="<%= task.photo %>" class="card-img-top" style="height:200px; background-size: cover; background-position: center;" alt="">
+          <% if task.photo %>
+            <img src="<%= task.photo %>" class="card-img-top" style="height:200px; background-size: cover; background-repeat: none; background-position: center;" alt="">
+            <%else%>
+            <img src="https://images.pexels.com/photos/1389103/pexels-photo-1389103.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" class="card-img-top" style="height:200px; background-size: cover; background-repeat: none; background-position: center;" alt="">
+          <% end %>
           <div class="d-flex justify-content-between">
             <p class="date"><%= task.start_time.strftime("%dth %B") %></p>
             <h2 class="category"><%= task.category %></h2>
