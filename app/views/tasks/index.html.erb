@@ -21,7 +21,7 @@
             <%= cl_image_tag task.pic_url, height: 200, crop: :fill %>
           <div class="d-flex justify-content-between">
             <p class="date"><%= task.start_time.strftime("%dth %B") %></p>
-            <h2 class="category"><%= task.category %></h2>
+            <h2 class="category" style="font-size: 24px;"><%= task.category %></h2>
           </div>
           <h4><%= link_to task.title, task_path(task), class:"task-title" %></h4>
         </div>
