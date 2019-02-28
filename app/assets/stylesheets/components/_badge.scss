@@ -1,0 +1,29 @@
+.badge {
+  font-family: arial;
+  color: white;
+  line-height: 20px;
+  padding: 0;
+  min-width: 20px;
+  background-color: #EA526F;
+  border-radius: 50%;
+  font-size: 14px
+}
+
+.badge-btn {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.badge3 {
+  padding: 5px 6px 5px 4px;
+  // border-radius: 50%;
+}
+
+.badge2 {
+  padding: 3px 3px 3px 3px;
+  // border-radius: 50%;
+  width: 26px;
+}
