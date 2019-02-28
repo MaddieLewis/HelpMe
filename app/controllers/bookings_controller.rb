@@ -3,7 +3,6 @@ class BookingsController < ApplicationController
   def index
     # need to only show pending or confirmed booking belonging to the user that are yet to happen
     @bookings = Booking.where(user: current_user).order(created_at: :desc)
-
   end
 
   # show
@@ -25,7 +24,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     @booking.task = Task.find(params[:task_id])
     if @booking.save
-      redirect_to user_path(@booking.user)
+      redirect_to task_booking_path(@booking.task, @booking)
     else
       render :new
     end
