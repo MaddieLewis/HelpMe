@@ -1,11 +1,12 @@
- <div class="navbar-wagon">
+<%= render "layouts/sign_in" %>
+<div class="navbar-wagon">
   <!-- Logo -->
   <a href="/" class="navbar-wagon-brand">
     <%= image_tag "GD2.png" %>
   </a>
   <% if current_user.nil? %>
     <div class="navbar-wagon-right hidden-xs hidden-sm">
-      <%= link_to'Sign in/Sign up', new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to'Sign in/Sign up', new_user_session_path, class: "navbar-wagon-item navbar-wagon-link", data: { toggle: "modal", target: "#exampleModal" } %>
     </div>
   <% elsif current_user %>
     <div class="navbar-wagon-right hidden-xs hidden-sm">
