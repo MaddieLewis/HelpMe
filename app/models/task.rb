@@ -6,4 +6,13 @@ class Task < ApplicationRecord
   validates :title, :address, :description, :start_time, :end_time, :category, presence: true
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
+  mount_uploader :photo, PhotoUploader
+
+  def pic_url()
+    if self.photo_url
+      return self.photo
+    else
+      return "sf1"
+    end
+  end
 end
