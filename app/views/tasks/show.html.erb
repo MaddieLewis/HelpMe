@@ -29,17 +29,30 @@
       <div class="col-4">
           <% if @user == current_user %>
           <div class="task-show-card">
+            <h5>Found a helper?</h5>
+            <div class="input-group">
+              <%= simple_form_for [@task] do |f| %>
+              <div class="form-inputs select">
+                <%= f.input :booked, as: :select %>
+              </div>
+              <div class="form-actions">
+                <%= f.button :submit, class: "btn button-pink"%>
+              </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="task-show-card">
             <h3>Bookings</h3>
             <% @task.bookings.each do |booking|%>
-             <div class="booking-card">
-                <img src="<%= booking.user.profile_picture %>" class="avatar-large" height="56px">
-                <div class="ml-3">
-                  <p><strong><%= booking.user.first_name %> wants to help!</strong></p>
-                  <p>"<%= booking.message %>"</p>
-                  <p>Status: <%= booking.status %></p>
-                  <%= link_to 'View', task_booking_path(@task, booking), class: "btn-sm button-pink" %>
-                </div>
+            <div class="booking-card">
+              <img src="<%= booking.user.profile_picture %>" class="avatar-large" height="56px">
+              <div class="ml-3">
+                <p><strong><%= booking.user.first_name %> wants to help!</strong></p>
+                <p>"<%= booking.message %>"</p>
+                <p>Status: <%= booking.status %></p>
+                <%= link_to 'View', task_booking_path(@task, booking), class: "btn-sm button-pink" %>
               </div>
+            </div>
             <% end %>
           </div>
           <% else %>
