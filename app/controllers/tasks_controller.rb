@@ -11,7 +11,8 @@ class TasksController < ApplicationController
       {
         lng: task.longitude,
         lat: task.latitude,
-        infoWindow: render_to_string(partial: "infowindow", locals: { task: task })
+        infoWindow: render_to_string(partial: "infowindow", locals: { task: task }),
+        image_url: helpers.asset_url('hand_icon.png')
       }
     end
   end
