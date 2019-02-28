@@ -1,5 +1,5 @@
 <div class="container mt-3">
-  <% if @user = current_user %>
+  <% if @user == current_user %>
     <h2>Thank you for wanting to do a good deed!</h2>
     <% if @booking.status == 'pending' %>
       <h3>We've sent your request to <%= @task_owner.first_name %>!</h3>
@@ -10,7 +10,7 @@
     <% elsif @booking.status == 'declined' %>
       <h3><%= @task_owner.first_name %> has declined your request to help</h3>
     <% end %>
-  <% elsif @task_owner = current_user %>
+  <% elsif @task_owner == current_user %>
   <h2>Someone wants to do a good deed!</h2>
     <% if @booking.status == 'pending' %>
       <h3>You have a new booking! <%= @user.first_name %> would like to help, please review their message below and confirm or decline</h3>
@@ -41,15 +41,27 @@
       </div>
     </div>
     <div class="card p-3">
-      <h3>Who you'll be helping:</h3>
-      <div class="d-flex justify-content-start">
-        <img src=<%= @task_owner.profile_picture %> class="avatar-x-large" height="100px">
-        <div class="pl-5">
-          <p>Name: <%= @task_owner.first_name + ' ' + @task_owner.last_name %></p>
-          <p>About them: <%= @task_owner.description %></p>
-          <%= link_to "View User Profile", user_path(@task_owner), class: "btn button-blue" %>
+      <% if @user == current_user %>
+        <h3>Who you'll be helping:</h3>
+        <div class="d-flex justify-content-start">
+          <img src=<%= @task_owner.profile_picture %> class="avatar-x-large" height="100px">
+          <div class="pl-5">
+            <p>Name: <%= @task_owner.first_name + ' ' + @task_owner.last_name %></p>
+            <p>About them: <%= @task_owner.description %></p>
+            <%= link_to "View User Profile", user_path(@task_owner), class: "btn button-blue" %>
+          </div>
         </div>
-      </div>
+        <% elsif @task_owner == current_user %>
+        <h3>Who wants to help:</h3>
+        <div class="d-flex justify-content-start">
+          <img src=<%= @user.profile_picture %> class="avatar-x-large" height="100px">
+          <div class="pl-5">
+            <p>Name: <%= @user.first_name + ' ' + @user.last_name %></p>
+            <p>About them: <%= @user.description %></p>
+            <%= link_to "View User Profile", user_path(@user), class: "btn button-blue" %>
+          </div>
+        </div>
+        <% end %>
     </div>
      <div class="card p-3 mt-3">
           <h5>Change the Status of this booking</h5>
@@ -57,7 +69,7 @@
               <%= simple_form_for [@task, @booking] do |f| %>
 
                   <div class="form-inputs select">
-                    <% if @user = current_user %>
+                    <% if @user == current_user %>
                       <%= f.input :status, collection: ['pending', 'cancelled']%>
                     <% elsif @task_owner = current_user %>
                       <%= f.input :status, collection: ['pending', 'confirmed', 'declined']%>

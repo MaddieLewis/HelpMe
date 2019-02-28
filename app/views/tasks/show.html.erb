@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-8">
         <div class="task-show-card" id="first-card">
-          <h1><%= @task.title %></h1>
+          <h2><%= @task.title %></h2>
         </div>
         <div class="task-show-card">
           <p><strong>Category</strong><br><%= @task.category.capitalize %></p>
@@ -14,7 +14,7 @@
           <p><strong>Timeslot</strong><br><%= @task.start_time.strftime("%d of %B, %Y") %> at <%= @task.start_time.strftime("%I:%M %p") %> and <%= @task.end_time.strftime("%d of %B, %Y") %> at <%= @task.end_time.strftime("%I:%M %p") %></p>
         </div>
         <div class="task-show-card">
-              <h2>Who you'll be helping</h2>
+              <h3>Who you'll be helping</h3>
           <div class="d-flex justify-content-start">
             <img src=<%= @user.profile_picture %> class="avatar-x-large" height="100px">
             <div class="pl-5">
@@ -28,9 +28,23 @@
 
       <div class="col-4">
           <% if @user == current_user %>
+          <div class="task-show-card">
+            <h3>Bookings</h3>
+            <% @task.bookings.each do |booking|%>
+             <div class="booking-card">
+                <img src="<%= booking.user.profile_picture %>" class="avatar-large" height="56px">
+                <div class="ml-3">
+                  <p><strong><%= booking.user.first_name %> wants to help!</strong></p>
+                  <p>"<%= booking.message %>"</p>
+                  <p>Status: <%= booking.status %></p>
+                  <%= link_to 'View', task_booking_path(@task, booking), class: "btn-sm button-pink" %>
+                </div>
+              </div>
+            <% end %>
+          </div>
           <% else %>
         <div class="task-show-card">
-          <h5>Book this Task!</h5>
+          <h3>Book this Task!</h3>
            <div class="input-group">
               <%= simple_form_for [@task, @booking] do |f| %>
 
