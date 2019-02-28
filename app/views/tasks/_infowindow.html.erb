@@ -1,2 +1,8 @@
-<h3><%= task.title %></h3>
-<p><%= task.description %></p>
+<!-- <div class="card-gd" style="box-shadow: 0; width: 100px"> -->
+  <%#= cl_image_tag task.pic_url, height: 200, crop: :fill %>
+  <div class="d-flex justify-content-between align-items-center" style="border-bottom: 1px solid pink">
+    <p><%= task.start_time.strftime("%dth %B") %></p>
+    <h2 class="category" style="font-size: 24px;"><%= task.category %></h2>
+  </div>
+  <h4 style="padding-top: 8px;"><%= link_to task.title, task_path(task), class:"task-title" %></h4>
+<!-- </div> -->
