@@ -61,6 +61,11 @@
         </div>
            <% end %>
         <div class="task-show-card">
+          <div id="map", style="width: 100%;
+  height: 30vh;" data-markers="<%= @markers.to_json %>", data-mapbox-api-key="<%= ENV['MAP_BOX_API'] %>">
+          </div>
+        </div>
+        <div class="task-show-card">
           <div class="flex-align">
 
             <div class="flex">
