@@ -63,23 +63,42 @@
         </div>
         <% end %>
     </div>
-     <div class="card p-3 mt-3">
-          <h5>Change the Status of this booking</h5>
-           <div class="input-group">
-              <%= simple_form_for [@task, @booking] do |f| %>
-
-                  <div class="form-inputs select">
-                    <% if @user == current_user %>
-                      <%= f.input :status, collection: ['pending', 'cancelled']%>
-                    <% elsif @task_owner = current_user %>
-                      <%= f.input :status, collection: ['pending', 'confirmed', 'declined']%>
-                    <% end %>
-                  </div>
-
-                  <div class="form-actions">
-                    <%= f.button :submit, class: "btn button-pink"%>
-                  </div>
-                <% end %>
-            </div>
-        </div>
+    <div class="row justify-content-between mx-0">
+    <div class="card p-3 mt-3" style="width: 50%">
+      <h5>Change the Status of this booking</h5>
+      <div class="input-group">
+        <%= simple_form_for [@task, @booking] do |f| %>
+          <div class="form-inputs select" style="">
+            <% if @user == current_user %>
+              <%= f.input :status, collection: ['pending', 'cancelled']%>
+            <% elsif @task_owner = current_user %>
+              <%= f.input :status, collection: ['pending', 'confirmed', 'declined']%>
+            <% end %>
+          </div>
+          <div class="form-actions">
+            <%= f.button :submit, class: "btn button-pink"%>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="card p-3 mt-3" style="width: 50%">
+      <% if @task.booked && @task_owner == current_user && @booking.user_rating == nil %>
+      <h5>Rate your helper</h5>
+      <div class="input-group">
+        <%= simple_form_for [@task, @booking] do |f| %>
+          <div class="form-inputs select">
+              <%= f.input :user_rating, collection: 1..5 %>
+              <%= f.text_area :user_review, class: "form-control mb-3" %>
+          </div>
+          <div class="form-actions">
+            <%= f.button :submit, class: "btn button-pink"%>
+          </div>
+        <% end %>
+        <% elsif @booking.user_rating.nil? == false %>
+        <h5 class="mb-3">You rated <%= @user.first_name %>: <%= @booking.user_rating %></h5>
+        <p>"<%= @booking.user_review %>"</p>
+      </div>
+      <% end %>
+    </div>
+    </div>
 </div>
