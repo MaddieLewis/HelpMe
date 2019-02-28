@@ -49,11 +49,18 @@
   border-radius: 50%;
 }
 .card-category {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  font-size: 15px;
-  text-transform: uppercase;
+  background-size: cover;
+  background-position: center;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 .card-description {
   position: absolute;
@@ -112,8 +119,7 @@
   align-items: center;
   .light-pink {
   background-color: #ea526f75;
-}
-
+  }
 }
 
 .card-product img {
@@ -138,4 +144,8 @@
 
 .card-product .card-product-infos {
   padding: 16px;
+}
+.flex-end {
+  align-self: flex-end;
+  // justify-content: flex-end;
 }
