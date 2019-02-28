@@ -7,6 +7,12 @@ class Task < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
   mount_uploader :photo, PhotoUploader
+  include PgSearch
+  pg_search_scope :search_by_task_title_category_description,
+    against: [:title, :category, :description],
+    using: {
+      tsearch: { prefix: true }
+    }
 
   def pic_url()
     if self.photo_url

@@ -5,7 +5,11 @@ class TasksController < ApplicationController
 
   def index
     # @tasks = Task.all
-    @tasks = Task.where.not(latitude: nil, longitude: nil)
+    if params[:query].present?
+      @tasks = Task.search_by_task_title_category_description(params[:query]).where.not(latitude: nil, longitude: nil)
+    else
+      @tasks = Task.where.not(latitude: nil, longitude: nil)
+    end
 
     @markers = @tasks.map do |task|
       {

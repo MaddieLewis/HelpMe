@@ -2,10 +2,14 @@
   <div class="banner-content">
     <h1>A Good <br>   Deed</h1>
     <p>Build a strong community, help one another</p>
-    <form class="form-inline my-2 my-lg-0" action="/">
-    <input class="form-control mr-sm-2" name="query" type="search" placeholder="How can you help?" aria-label="Search" value="<%= @query %>">
-    <button class="btn button-blue" type="submit">Search</button>
-    </form>
+    <%= form_tag tasks_path, class:'form-inline', method: :get do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "How can you help?"
+      %>
+      <%= submit_tag "search tasks", class: 'btn button-pink ml-2' %>
+    <% end %>
   </div>
 </div>
 <div class="header-container" style="padding-left: 16px;">
