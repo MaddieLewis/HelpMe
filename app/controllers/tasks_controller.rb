@@ -24,6 +24,15 @@ class TasksController < ApplicationController
   def show
     @user = @task.user
     @booking = Booking.new
+    array = [@task]
+    @markers = array.map do |task|
+      {
+        lng: task.longitude,
+        lat: task.latitude,
+        infoWindow: render_to_string(partial: "showinfowindow", locals: { task: @task }),
+        image_url: helpers.asset_url('hand_icon.png')
+      }
+    end
   end
 
   def new
