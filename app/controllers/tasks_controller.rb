@@ -7,7 +7,7 @@ class TasksController < ApplicationController
     # @tasks = Task.all
     if params[:query].present?
       @tasks = Task.search_by_task_title_category_description(params[:query])
-      .where.not(latitude: nil, longitude: nil).order('start_time')
+      .where.not(latitude: nil, longitude: nil).order(start_time: :desc)
       @tasks = @tasks.select { |task| task.end_time - Time.now > 0 }
     else
       @tasks = Task.where.not(latitude: nil, longitude: nil).order('start_time')
