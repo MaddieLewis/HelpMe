@@ -1,0 +1,39 @@
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="">Sign Up!</h2>
+      </div>
+      <div class="p-3">
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= f.error_notification %>
+
+          <div class="form-inputs">
+            <%= f.input :email,
+                        required: true,
+                        autofocus: true,
+                        input_html: { autocomplete: "email" }%>
+            <%= f.input :password,
+                        required: true,
+                        hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                        input_html: { autocomplete: "new-password" } %>
+            <%= f.input :password_confirmation,
+                        required: true,
+                        input_html: { autocomplete: "new-password" } %>
+            <%= f.input :first_name, required: true %>
+            <%= f.input :last_name, required: true %>
+            <%= f.input :profile_picture %>
+            <%= f.input :description %>
+          </div>
+
+          <div class="form-actions">
+            <%= f.button :submit, "Sign up", class: "btn button-pink" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer d-flex justify-content-between">
+        <span> Already doing good deeds? <%= link_to "Sign in", new_session_path(resource_name), class: "link-su" %></span>
+      </div>
+    </div>
+  </div>
+</div>
