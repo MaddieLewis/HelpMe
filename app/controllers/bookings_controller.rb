@@ -23,8 +23,9 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.user = current_user
     @booking.task = Task.find(params[:task_id])
+    @task = @booking.task
     if @booking.save
-      redirect_to task_booking_path(@booking.task, @booking)
+      redirect_to task_booking_path(@task, @booking)
     else
       render :new
     end
