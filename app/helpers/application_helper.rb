@@ -10,4 +10,12 @@ module ApplicationHelper
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
+
+  def task_name
+    :task
+  end
+
+  def task
+    @task ||= Task.new
+  end
 end

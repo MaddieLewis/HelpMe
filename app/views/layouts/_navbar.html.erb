@@ -1,5 +1,6 @@
 <%= render "layouts/sign_in" %>
 <%= render "layouts/signup" %>
+<%= render "tasks/newmodal", task: task %>
 <div class="navbar-wagon">
   <!-- Logo -->
   <a href="/" class="navbar-wagon-brand">
@@ -12,7 +13,7 @@
     </div>
   <% elsif current_user %>
     <div class="navbar-wagon-right hidden-xs hidden-sm">
-      <%=link_to "Create Task", new_task_path, class: "navbar-wagon-item navbar-wagon-link"%></li>
+      <%=link_to "Create Task", new_task_path, class: "navbar-wagon-item navbar-wagon-link", data: { toggle: "modal", target: "#newModal" }%></li>
 <!--       <a href="" class="navbar-wagon-item navbar-wagon-link">Messages</a> -->
 
       <!-- Profile picture with dropdown list -->
