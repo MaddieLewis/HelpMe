@@ -16,6 +16,6 @@ module ApplicationHelper
   end
 
   def task
-    @task ||= Task.new
+    Task.new
   end
 end
