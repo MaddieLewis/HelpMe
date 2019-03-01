@@ -60,7 +60,6 @@
     <% if @user == current_user %>
       <h3 class="mt-3">Your future Good Deeds . . .</h3>
       <% @user&.bookings.each do |booking| %>
-
         <div class="card-booking">
           <div class="">
             <div class="d-flex justify-content-between">
@@ -109,6 +108,7 @@
         </div>
         <% end %>
       <% end %>
+
     <div class="card mt-3 p-3">
       <h3><%= @user&.first_name %>'s Reviews</h3>
         <% @user&.bookings.each do |booking| %>
@@ -116,12 +116,12 @@
         <% @task_owner = User.find(@task&.user_id) %>
         <div class="rating-card">
           <%= image_tag @task_owner&.profile_picture, alt: "alttext", class: "avatar-x-large mr-3" %>
-        <div>
-        <% booking&.user_rating&.times do %>
-          <span>*</span>
-        <% end %>
-        "<%= booking&.user_review %>"
-        </div>
+          <div>
+          <% booking&.user_rating&.times do %>
+            <span>*</span>
+          <% end %>
+          "<%= booking&.user_review %>"
+          </div>
         </div>
       <% end %>
     </div>
