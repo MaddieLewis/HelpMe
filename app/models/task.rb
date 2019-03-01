@@ -9,7 +9,7 @@ class Task < ApplicationRecord
   mount_uploader :photo, PhotoUploader
   include PgSearch
   pg_search_scope :search_by_task_title_category_description,
-    against: [:title, :category, :description],
+    against: [:title, :category, :description, :address],
     using: {
       tsearch: { prefix: true }
     }
