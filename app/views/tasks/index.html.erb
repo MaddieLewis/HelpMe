@@ -2,13 +2,32 @@
   <div class="banner-content">
     <h1>A Good <br>   Deed</h1>
     <p>Build a strong community, help one another</p>
-    <%= form_tag tasks_path, class:'form-inline', method: :get do %>
+
+    <%= form_tag tasks_path, class:'form-inline',  method: :get do %>
+    <div style = "margin-right: 16px">
       <%= text_field_tag :query,
         params[:query],
         class: "form-control",
-        placeholder: "How can you help?"
+        placeholder: "Search by Task"
       %>
+    </div>
+    <div style = "margin-right: 16px">
+      <%= text_field_tag :address,
+        params[:address],
+        class: "form-control",
+        placeholder: "Search by Address"
+      %>
+    </div>
+    <div style = "margin-right: 16px">
+      <%= select_tag :radius,
+        options_for_select([["Enter a Radius",100], ["1km",1],["2km",2],["5km",5], ["Anywhere", 1000]],
+        params[:radius].to_i),
+        {:class => 'form-control'}
+      %>
+
       <%= submit_tag "search tasks", class: 'btn button-pink ml-2' %>
+      </div>
+
     <% end %>
   </div>
 </div>
