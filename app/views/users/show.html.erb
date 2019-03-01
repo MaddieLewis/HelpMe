@@ -26,63 +26,84 @@
     <div class="" style="padding: 16px; background-color: white; margin-top: 16px; box-shadow: 0 0 15px rgba(0,0,0,0.1);">
     <h3 class="mt-3">Your Tasks </h3>
 
-
     <div class="row">
       <% @user.tasks.each do |task| %>
-        <div class="col-sm-6 mb-3">
-          <div class="card-category d-flex justify-content-between" style="width: 100%; height:200px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= task.photo %>); background-repeat:no-repeat; background-position: center center; padding: 16px;">
-            <div class="card-product-infos">
-              <h3 class="task-title" style="color: white; font-size: 24px; font-weight: bold;"><%= task.title %></h3>
-              <p style="color: white; font-size: 12px; font-weight: lighter;"><%= task.category %></p>
-            </div>
-            <div class="d-flex justify-content-end">
-              <div style="text-align: right;">
-              <p style="color: white; font-size: 12px; align-self: flex-end;"><%=  task.start_time.strftime("%d/%m") %></p>
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+          <%= link_to task_path(task), class: "decoration" do %>
+            <div class="card-category d-flex justify-content-between" style="width: 100%; height:200px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= task.photo %>); background-repeat:no-repeat; background-position: center center; padding: 16px;">
+              <div class="card-product-infos no-box-shadow">
+                <h3 class="task-title no-box-shadow" style="color: white; font-size: 24px; font-weight: bold; font-weight: normal; text-shadow: 0 0 15px rgba(0,0,0,0.1);"><%= task.title %></h3>
+                <p class="no-box-shadow" style="color: #f795a8; font-size: 12px;"><%= task.category.upcase %></p>
+              </div>
+              <div class="d-flex justify-content-end no-box-shadow">
+                <div class="no-box-shadow" style="text-align: right;">
+                <p class="no-box-shadow" style="color: white; font-size: 12px; align-self: flex-end;"><%=  task.start_time.strftime("%d/%m") %></p>
 
-              <% if task.booking_ids.count == 1 %>
-                <h5><%= task.booking_ids.count %> <i class="fas fa-inbox"></i></h5>
-              <% elsif task.booking_ids.count > 1 %>
-                <h5><%= task.booking_ids.count %> <i class="fas fa-inbox"></i></h5>
-              <% else %>
-                <h5 style="font-size: 24px;">0 <i class="fas fa-inbox"></i></h5>
-              <% end %>
-
-              <%= link_to "view task", task_path(task), class: "btn btn-sm button-pink flex-end justify-content-end align-items-end" %>
+                <% if task.booking_ids.count == 1 %>
+                  <h5 class="no-box-shadow"><%= task.booking_ids.count %> <i class="fas fa-inbox no-box-shadow"></i></h5>
+                <% elsif task.booking_ids.count > 1 %>
+                  <h5 class="no-box-shadow"><%= task.booking_ids.count %> <i class="fas fa-inbox no-box-shadow"></i></h5>
+                <% else %>
+                  <h5 class="no-box-shadow" style="font-size: 24px;">0 <i class="fas fa-inbox no-box-shadow"></i></h5>
+                <% end %>
+                </div>
               </div>
             </div>
-          </div>
+          <% end %>
         </div>
       <% end %>
     </div>
     </div>
 
-      <h3 class="mt-3">You have offered to help!</h3>
+      <h3 class="mt-3">Your future Good Deeds . . .</h3>
       <% @user.bookings.each do |booking| %>
-        <div class="card-gd-profile">
-          <div class="card-body">
-            <div class="d-flex align-items-center">
-              <img src="<%= User.find(booking.task.user_id).profile_picture %>" alt="profile-avatar" class="avatar-large align-self-center">
-              <h3 class="ml-3"><%= User.find(booking.task.user_id).first_name %>'s Task</h3>
+
+        <div class="card-booking">
+          <div class="">
+            <div class="d-flex justify-content-between">
+            <div class="">
+              <h2 style="text-align: left; font-size: 18px;"><%= booking.task.category.upcase %></h2>
+              <p><%=  booking.time.strftime("%dth %B") %></p>
             </div>
+
+            <div class="d-flex align-items-center">
+              <h3 class="ml-3 pr-2"><%= User.find(booking.task.user_id).first_name %>'s Task</h3>
+              <img src="<%= User.find(booking.task.user_id).profile_picture %>" alt="profile-avatar" class="avatar align-self-center" style="width: 100px; height: 100px;">
+            </div>
+            </div>
+            <div class="" style="text-align:left;">
             <h3 class="task-title mt-3"><%= booking.task.title %></h3>
             <p class="mt-3"><%= booking.task.description %></p>
-            <p>Category: <%= booking.task.category %></p>
-            <p><%=  booking.time.strftime("%dth %B") %></p>
+            </div>
+
+
+            <div class="d-flex justify-content-between">
+            <div class="">
             <% if booking.status == "pending" %>
-              <h5>this booking still needs to be confirmed by <%= User.find(booking.task.user_id).first_name %>.</h5>
+              <h5 style="font-weight: bold;">PENDING</h5>
+              </div>
+              <div class="">
             <% elsif booking.status == "confirmed" %>
-              <h5><%= User.find(booking.task.user_id).first_name %> has approved your request to help!.</h5>
+              <h5 style="font-weight: bold;">APPROVED</h5>
+              </div>
+              <div class="">
+              <div class="">
               <%= link_to "get in touch", User.find(booking.task.user_id).email, class: "btn button-pink" %>
             <% elsif booking.status == "declined"%>
-              <h5><%= User.find(booking.task.user_id).first_name %> has found someone else to help.</h5>
+              <h5 style="font-weight: bold;">DECLINED</h5>
+              </div>
+              <div class="">
             <% elsif booking.status == "cancelled"%>
-              <h5><%= User.find(booking.task.user_id).first_name %> has cancelled this request.</h5>
+              <h5 style="font-weight: bold;">CANCELLED</h5>
+              </div>
+              <div class="">
             <% end %>
-            <%= link_to "view booking", task_booking_path(booking.task, booking), class: "btn button-pink" %>
+
+            <%= link_to "view booking", task_booking_path(booking.task, booking), class: "btn button-pink light-pink" %>
+            </div>
+            </div>
           </div>
         </div>
       <% end %>
-
     <% end %>
-
 </div>
