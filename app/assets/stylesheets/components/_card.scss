@@ -112,6 +112,16 @@
   border: 1px solid lightgray;
   border-radius: 4px;
 }
+
+.rating-card {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 8px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+}
+
 .card-product {
   width: 100%;
   overflow: hidden;

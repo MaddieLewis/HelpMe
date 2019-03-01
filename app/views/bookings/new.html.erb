@@ -1,0 +1,14 @@
+<div class="container">
+  <h2>Make a Booking</h2>
+  <%= simple_form_for [@task, @booking] do |f| %>
+
+    <div class="form-inputs select">
+      <%= f.input :message %>
+      <%= f.input :time %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, class: "btn button-pink"%>
+    </div>
+  <% end %>
+</div>

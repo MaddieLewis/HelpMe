@@ -1,6 +1,6 @@
 <div class="show-page">
 
-  <div class="top-picture" style="background-image: url(<%= @task.photo %>)"></div>
+  <div class="top-picture" style="background-image: url(<%= @task.photo %>); background-position: center"></div>
 
   <div class="container margin-top-negative">
     <div class="row">
@@ -84,6 +84,7 @@
             <div class="flex">
               <% if @user == current_user %>
                 <%= link_to "Edit Task", edit_task_path(@task), class: "btn button-blue my-2" %>
+                <%= link_to "Delete", edit_task_path(@task), class: "btn button-blue my-2" %>
               <% end %>
               <%= link_to "Home", tasks_path, class: "btn button-pink" %>
             </div>
