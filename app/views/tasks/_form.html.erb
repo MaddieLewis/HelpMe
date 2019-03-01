@@ -1,19 +1,23 @@
 <%= simple_form_for task, remote: true do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-  <div class="form-inputs">
-    <%= f.input :title, label: "Task Title" %>
-    <%= f.input :description, label: "Description" %>
-    <%= f.input :start_time, label: "Start Time" %>
-    <%= f.input :end_time, label: "End Time" %>
-    <%= f.input :category, collection: ['transport', 'pets', 'shopping', 'DIY', 'other'] %>
-    <%= f.input :photo, label: "Photo Upload" %>
-    <%= f.input :photo_cache, as: :hidden %>
-    <%= f.input :address, label: "Address" %>
+   <div class= "container">
+    <div class = "form-inputs" style="display: flex; justify-content: space-around;">
+      <div class="form-inputs-1" style="flex-grow: 6;padding-right: 8px;">
+        <%= f.input :title, label: "Task Title" %>
+        <%= f.input :description, label: "Description", input_html: { style: "height: 200px"} %>
+      </div>
+      <div class="form-inputs-2" style="flex-grow: 3;">
+        <%= f.input :start_time, label: "Start Time"%>
+        <%= f.input :end_time, label: "End Time"%>
+        <%= f.input :category, collection: ['transport', 'pets', 'shopping', 'DIY', 'other'] %>
+        <%= f.input :photo, label: "Photo Upload" %>
+      </div>
+    </div>
+        <%= f.input :photo_cache, as: :hidden %>
+        <%= f.input :address, label: "Address" %>
+    <div class="form-actions">
+      <%= f.button :submit, class: "btn button-pink" %>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, class: "btn button-pink" %>
-  </div>
-
 <% end %>
