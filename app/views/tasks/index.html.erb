@@ -10,7 +10,7 @@
       <%= text_field_tag :query,
         params[:query],
         class: "form-control",
-        placeholder: "Search by Task"
+        placeholder: "Search Task/Category"
       %>
 
     </div>
@@ -28,7 +28,7 @@
         {:class => 'form-control'}
       %>
 
-      <%= submit_tag "search", class: 'btn button-pink ml-2' %>
+      <%= submit_tag "Search", class: 'btn button-pink ml-2', style: "width: 200px"%>
       </div>
     <% end %>
   </div>
