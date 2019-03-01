@@ -60,7 +60,7 @@ class TasksController < ApplicationController
     if @task.update(task_params)
       redirect_to task_path(@task), notice: 'Task was successfully updated.'
     else
-      render :new
+      render :edit
     end
   end
 
