@@ -1,17 +1,17 @@
-<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" id="newModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
+    <div class="modal-content modal-lg">
       <div class="modal-header">
-        <h2 class="">Sign Up!</h2>
+        <h2 class="">Create a New Task</h2>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="p-3">
-        <%= render 'my_devise/registrations/form' %>
+        <%= render '../views/tasks/form', task: task %>
       </div>
       <div class="modal-footer d-flex justify-content-between">
-        <span> Already doing good deeds? <%= link_to "Sign in", new_session_path(resource_name), class: "link-su" %></span>
+        <span><%= link_to "Home", tasks_path, class: "link-su" %></span>
       </div>
     </div>
   </div>

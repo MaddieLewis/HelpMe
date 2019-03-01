@@ -1,14 +1,35 @@
 <div class="banner" style="background-image: linear-gradient(105.2deg, #000000 -86.12%, rgba(0, 0, 0, 0) 99.98%), url(<%= image_path "woman-girl-rain.jpg"%>);">
   <div class="banner-content">
     <h1>A Good <br>   Deed</h1>
+
     <p>“To be doing good deeds is man’s most glorious task.” - Sophocles</p>
     <%= form_tag tasks_path, class:'form-inline', method: :get do %>
+
+    <div style = "margin-right: 16px">
+      
       <%= text_field_tag :query,
         params[:query],
         class: "form-control",
-        placeholder: "How can you help?"
+        placeholder: "Search by Task"
       %>
+
+    </div>
+    <div style = "margin-right: 16px">
+      <%= text_field_tag :address,
+        params[:address],
+        class: "form-control",
+        placeholder: "Search by Address"
+      %>
+    </div>
+    <div style = "margin-right: 16px">
+      <%= select_tag :radius,
+        options_for_select([["Enter a Radius",100], ["1km",1],["2km",2],["5km",5], ["Anywhere", 1000]],
+        params[:radius].to_i),
+        {:class => 'form-control'}
+      %>
+
       <%= submit_tag "search", class: 'btn button-pink ml-2' %>
+      </div>
     <% end %>
   </div>
 </div>

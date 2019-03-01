@@ -5,14 +5,17 @@ class TasksController < ApplicationController
 
   def index
     # @tasks = Task.all
+    # raise
+    @tasks = Task.order(start_time: :desc).where.not(latitude: nil, longitude: nil)
     if params[:query].present?
       @tasks = Task.search_by_task_title_category_description(params[:query])
-      .where.not(latitude: nil, longitude: nil).order(start_time: :desc)
-      @tasks = @tasks.select { |task| task.end_time - Time.now > 0 }
-    else
-      @tasks = Task.where.not(latitude: nil, longitude: nil).order('start_time')
-      @tasks = @tasks.select { |task| task.end_time - Time.now > 0 }
+      .order(start_time: :desc)
     end
+    if params[:address].present? && params[:radius].present?
+      @tasks = @tasks.near(params[:address], params[:radius])
+    end
+
+    @tasks = @tasks.select { |task| task.end_time - Time.now > 0 }
 
     @markers = @tasks.map do |task|
       {
@@ -47,10 +50,17 @@ class TasksController < ApplicationController
     @task.user = current_user
 
     if @task.save
-      redirect_to task_path(@task), notice: 'Task was successfully created.'
+      respond_to do |format|
+        format.html {redirect_to task_path(@task), notice: 'Task was successfully created.'}
+        format.js
+      end
     else
-      render :new
+      respond_to do |format|
+        format.html {render :new}
+        format.js
+      end
     end
+
   end
 
   def edit
@@ -60,7 +70,7 @@ class TasksController < ApplicationController
     if @task.update(task_params)
       redirect_to task_path(@task), notice: 'Task was successfully updated.'
     else
-      render :new
+      render :edit
     end
   end
 
