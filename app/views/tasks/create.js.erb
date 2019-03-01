@@ -1,0 +1,21 @@
+refreshForm = ((innerHTML) => {
+  newTaskForm = document.querySelector('#new_task');
+    newTaskForm.innerHTML = innerHTML;
+});
+
+<% if @task.errors.any?%>
+  refreshForm("<%= j render 'form', task: @task %>");
+<% else %>
+  window.location.replace("<%= task_path(@task) %>");
+<% end %>
+
+refreshSignIn = ((innerHTML) => {
+  newUserForm = document.querySelector('#new_user');
+    newUserForm.innerHTML = innerHTML;
+});
+
+<% if @task.errors.any?%>
+  refreshSignIn("<%= j render 'sign_in', resource: @resource %>");
+<% else %>
+  window.location.replace("#");
+<% end %>

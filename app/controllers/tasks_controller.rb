@@ -47,10 +47,17 @@ class TasksController < ApplicationController
     @task.user = current_user
 
     if @task.save
-      redirect_to task_path(@task), notice: 'Task was successfully created.'
+      respond_to do |format|
+        format.html {redirect_to task_path(@task), notice: 'Task was successfully created.'}
+        format.js
+      end
     else
-      render :new
+      respond_to do |format|
+        format.html {render :new}
+        format.js
+      end
     end
+
   end
 
   def edit
