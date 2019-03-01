@@ -1,15 +1,18 @@
 <div class="banner" style="background-image: linear-gradient(105.2deg, #000000 -86.12%, rgba(0, 0, 0, 0) 99.98%), url(<%= image_path "woman-girl-rain.jpg"%>);">
   <div class="banner-content">
     <h1>A Good <br>   Deed</h1>
-    <p>Build a strong community, help one another</p>
 
-    <%= form_tag tasks_path, class:'form-inline',  method: :get do %>
+    <p>“To be doing good deeds is man’s most glorious task.” - Sophocles</p>
+    <%= form_tag tasks_path, class:'form-inline', method: :get do %>
+
     <div style = "margin-right: 16px">
+      
       <%= text_field_tag :query,
         params[:query],
         class: "form-control",
         placeholder: "Search by Task"
       %>
+
     </div>
     <div style = "margin-right: 16px">
       <%= text_field_tag :address,
@@ -25,29 +28,31 @@
         {:class => 'form-control'}
       %>
 
-      <%= submit_tag "search tasks", class: 'btn button-pink ml-2' %>
+      <%= submit_tag "search", class: 'btn button-pink ml-2' %>
       </div>
-
     <% end %>
   </div>
 </div>
+
 <div class="header-container" style="padding-left: 16px;">
-  <h1>Explore our needers tasks ...</h1>
+  <h1 style="font-size: 36px;">Change the world, one deed at a time ...</h1>
 </div>
 <div class="map_and_tasks d-flex">
 
   <div class="container">
     <div class="row">
     <% @tasks.each do |task| %>
-      <div class="col-sm-12 col-md-12 col-lg-6">
-        <div class="card-gd ">
-            <%= cl_image_tag task.pic_url, height: 200, crop: :fill %>
-          <div class="d-flex justify-content-between">
-            <p style="font-family: 'Roboto' sans-serif;"><%= task.start_time.strftime("%d/%m") %></p>
-            <h2 class="category" style="font-size: 24px; opacity: 0.7;"><%= task.category %></h2>
+      <div class="col-sm-12 col-md-6 col-lg-4 pl-3 pr-0">
+        <%= link_to task_path(task) do %>
+          <div class="card-gd mb-2">
+              <%= cl_image_tag task.pic_url, height: 200, crop: :fill %>
+            <div class="d-flex justify-content-between">
+              <p style="font-family: 'Roboto' sans-serif;"><%= task.start_time.strftime("%d/%m") %></p>
+              <h2 class="category" style="font-size: 18px; opacity: 0.7;"><%= task.category.upcase %></h2>
+            </div>
+            <h1 style="font-size: 24px; color: black"><%= task.title %></h4>
           </div>
-          <h4><%= link_to task.title, task_path(task), class:"task-title" %></h4>
-        </div>
+        <% end %>
       </div>
     <% end %>
     </div>
