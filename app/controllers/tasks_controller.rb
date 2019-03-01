@@ -14,6 +14,12 @@ class TasksController < ApplicationController
       @tasks = @tasks.select { |task| task.end_time - Time.now > 0 }
     end
 
+    # if params[:category].present?
+    #   @tasks = @tasks.select { |task| task.category == params[:category] }
+    # else
+    #   @tasks
+    # end
+
     @markers = @tasks.map do |task|
       {
         lng: task.longitude,
